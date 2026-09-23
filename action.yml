@@ -1,0 +1,41 @@
+name: 'Setup Harness CLI'
+description: 'Install and authenticate the Harness CLI (hc) so you can run hc commands directly in subsequent steps.'
+
+branding:
+  icon: 'package'
+  color: 'blue'
+
+inputs:
+  api-url:
+    description: 'Harness API base URL (e.g. https://app.harness.io). No trailing slash. Can also be set via the HARNESS_URL environment variable.'
+    required: false
+  account:
+    description: 'Harness account ID. Can also be set via the HARNESS_ACCOUNT_ID environment variable.'
+    required: false
+  token:
+    description: 'Harness PAT token. Always pass via a secret. Can also be set via the HARNESS_PAT_TOKEN environment variable.'
+    required: false
+  org:
+    description: 'Harness organization ID (optional). Can also be set via the HARNESS_ORG_ID environment variable.'
+    required: false
+  project:
+    description: 'Harness project ID (optional). Can also be set via the HARNESS_PROJECT_ID environment variable.'
+    required: false
+  hc-version:
+    description: 'Harness CLI (hc) release tag to install (e.g. v1.3.43). Defaults to latest.'
+    required: false
+    default: 'latest'
+  github-token:
+    description: 'Token used to call the GitHub API when resolving the latest hc release. Defaults to the workflow token.'
+    required: false
+    default: ${{ github.token }}
+
+outputs:
+  hc-version:
+    description: 'The resolved hc version that was installed (e.g. v1.3.43).'
+
+runs:
+  using: 'node24'
+  main: 'dist/index.js'
+  post: 'dist/cleanup.js'
+  post-if: always()
