@@ -15,7 +15,7 @@
     "github-action",
     "harness-cli"
   ],
-  "license": "MIT",
+  "license": "Apache-2.0",
   "dependencies": {
     "@actions/cache": "3.2.4",
     "@actions/core": "1.11.1",
