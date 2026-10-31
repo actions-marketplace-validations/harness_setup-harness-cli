@@ -144,3 +144,5 @@ Refer [CONTRIBUTING.md](https://github.com/harness/harness/blob/main/CONTRIBUTIN
 
 Apache License 2.0. Refer [LICENSE](https://github.com/harness/harness/blob/main/LICENSE).
 
+
+<!-- BT-24203: onboarding PR to trigger centralisedTsCoverageCheck validation; no functional change. -->

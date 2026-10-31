@@ -114,6 +114,11 @@ beforeEach(() => {
   jest.clearAllMocks();
   delete process.env.SETUP_HC_VERSION;
   delete process.env.SETUP_HC_LOGGED_IN;
+  // Harness CI pods inject HARNESS_ORG_ID/HARNESS_PROJECT_ID; src/index.ts
+  // forwards them as --org/--project to `hc auth login`, which breaks the
+  // strict arg assertions below. Clear them for hermetic tests.
+  delete process.env.HARNESS_ORG_ID;
+  delete process.env.HARNESS_PROJECT_ID;
   // Skip install by default in orchestration tests; install.test.ts covers installHc thoroughly
   process.env.SETUP_HC_VERSION = 'v1.3.43';
   // Reset cache mock after resetModules
